@@ -10,4 +10,12 @@ class ChecksumTest < ActiveSupport::TestCase
     checksum = Checksum.new @fixture1
     assert_equal @fixture1, checksum.original
   end
+
+  test 'should return count of original words' do
+    checksum1 = Checksum.new @fixture1
+    assert_equal 7, checksum1.original_word_count
+
+    checksum2 = Checksum.new @fixture2
+    assert_equal 9, checksum2.original_word_count
+  end
 end
