@@ -13,7 +13,13 @@ class Checksum
     @cleaned ||= original.scan(/[a-zA-Z ]+/).join
   end
 
-  def generated_words
-    @generated_words ||= original.gsub(/\s+/, '').scan(/.{1,10}/).join(' ')
+  def processed_words
+    @processed_words ||= split_up_original_words.join(' ')
+  end
+
+  private
+
+  def split_up_original_words
+    original.gsub(/\s+/, '').scan(/.{1,10}/).map(&:titleize)
   end
 end
