@@ -12,4 +12,8 @@ class Checksum
   def cleaned
     @cleaned ||= original.scan(/[a-zA-Z ]+/).join
   end
+
+  def generated_words
+    @generated_words ||= original.gsub(/\s+/, '').scan(/.{1,10}/).join(' ')
+  end
 end
