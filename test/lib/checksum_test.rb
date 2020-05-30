@@ -23,13 +23,13 @@ class ChecksumTest < ActiveSupport::TestCase
 
   test "should generate 10 character long words from original" do
     checksum1 = Checksum.new @fixture1
-    assert_equal 'Foobarbazw Ibblefizzb Uzzfizzbuz Z', checksum1.processed_words
+    assert_equal 'Foobarbazw IbblEfizzb UzzfIzzbUz Z', checksum1.processed_words
 
     checksum2 = Checksum.new @fixture2
-    assert_equal 'Thequickbr Ownfoxjump Soverthela Zydog', checksum2.processed_words
+    assert_equal 'Thequickbr OwnfOxjUmp Soverthela Zydog', checksum2.processed_words
 
     checksum3 = Checksum.new @fixture3
-    assert_equal 'Thsewrdssh Uldbeclene D', checksum3.processed_words
+    assert_equal 'Thsewrdssh UldbEclEne D', checksum3.processed_words
 
     checksum4 = Checksum.new @fixture4
     assert_equal 'Rvztrtkrfr Gp', checksum4.processed_words
