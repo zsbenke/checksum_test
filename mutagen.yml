@@ -1,0 +1,25 @@
+sync:
+  development:
+    alpha: "."
+    beta: vagrant@dealogic:~/app
+    mode: "two-way-resolved"
+    ignore:
+      vcs: true
+      paths:
+        - /bin/start
+        - /bin/stop
+        - /log
+        - /tmp
+        - /node_modules
+        - /storage
+        - /public/assets
+        - /public/packs
+        - /public/packs-test
+        - /yarn-error.log
+        - /mutagen.yml.lock
+        - /.vagrant
+        - /Vagrantfile
+        - /provision.sh
+        - .gitignore
+        - .DS_Store
+        - .sass-cache/

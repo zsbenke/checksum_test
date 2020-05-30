@@ -1,0 +1,6 @@
+.git
+.dockerignore
+.semaphore-cache
+.byebug_history
+log/*
+tmp/*

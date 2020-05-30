@@ -1,0 +1,67 @@
+version: '3.6'
+
+networks:
+  frontend:
+  backend:
+
+services:
+  traefik:
+    image: traefik:v1.7.16
+    command: --api --docker --acme.email="${TRAEFIK_ACME_EMAIL}"
+    restart: always
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./acme.json:/acme.json
+    ports:
+      - "80:80"
+      - "443:443"
+    labels:
+      - "traefik.docker.network=frontend"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${TRAEFIK_DOMAINS}; PathPrefixStrip:/traefik"
+      - "traefik.port=8080"
+      - "traefik.protocol=http"
+      - "traefik.frontend.auth.basic=${TRAEFIK_BASIC_AUTH}"
+
+  db:
+    image: "postgres:9.6.10-alpine"
+    volumes:
+      - "db:/var/lib/postgresql/data"
+    env_file:
+      - ".env"
+    networks:
+      - backend
+    labels:
+      - "traefik.enable=false"
+
+  app: &app_base
+    build:
+      context: "."
+    restart: always
+    stdin_open: true
+    tty: true
+    volumes:
+      - ".:/app:cached"
+    env_file:
+      - ".env"
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - backend
+    labels:
+      - "traefik.enable=false"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10M"
+        max-file: "10"
+    command: sh -c  "rm -f tmp/pids/server.pid && bundle exec rails server -p 3000 -b 0.0.0.0"
+
+volumes:
+  db:
+  app:

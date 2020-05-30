@@ -1,0 +1,99 @@
+AllCops:
+  TargetRubyVersion: 2.6.5
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'bin/*'
+    - 'tmp/**/*'
+    - vendor/**/*
+    - Rakefile
+    - config/boot.rb
+  DisplayCopNames: true
+
+Rails:
+  Enabled: true
+
+Style/Alias:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/LineEndConcatenation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/NumericPredicate:
+  Enabled: false
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+Layout/FirstParameterIndentation:
+  EnforcedStyle: consistent
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/AsciiComments:
+  Enabled: false
+Style/FormatString:
+  EnforcedStyle: percent
+Style/GuardClause:
+  MinBodyLength: 5
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - 'db/seeds.rb'
+    - 'app/policies/**/*'
+Metrics/ClassLength:
+  Max: 150
+  Exclude:
+    - 'test/**/*'
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'test/**/*'
+    - 'db/seeds.rb'
+
+Metrics/AbcSize:
+  Max: 25
+  Exclude:
+    - 'test/**/*'
+    - 'db/seeds.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'test/system/*'
+    - 'db/seeds.rb'
+    - 'config/routes.rb'
+
+Layout/AlignHash:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+  AllowInnerSlashes: true
+
+Style/WordArray:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+Rails/HasAndBelongsToMany:
+  Enabled: false
+

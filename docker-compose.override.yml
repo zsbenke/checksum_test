@@ -1,0 +1,68 @@
+version: '3.6'
+
+services:
+  traefik:
+    volumes:
+      - ./traefik.toml:/traefik.toml
+
+  db:
+    networks:
+      - frontend
+      - backend
+    labels:
+      - "traefik.enable=false"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${TRAEFIK_DOMAINS}"
+      - "traefik.port=5432"
+      - "traefik.protocol=http"
+
+  webdriver:
+    image: selenium/standalone-chrome-debug:3.14.0
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - backend
+    labels:
+      - "traefik.enable=false"
+
+  app:
+    environment:
+      SELENIUM_REMOTE_URL: http://webdriver:4444/wd/hub
+    depends_on:
+      - db
+      - webdriver
+    links:
+      - db
+      - webdriver
+    networks:
+      - frontend
+      - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${TRAEFIK_DOMAINS}"
+      - "traefik.port=3000"
+      - "traefik.protocol=http"
+
+  webpacker:
+    build:
+      context: "."
+    restart: always
+    volumes:
+      - ".:/app:cached"
+    env_file:
+      - ".env"
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ".:/app:cached"
+    networks:
+      - backend
+    labels:
+      - "traefik.enable=false"
+    ports:
+      - '3035:3035'
+    command: "./bin/webpack-dev-server"
+
