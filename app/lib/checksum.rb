@@ -8,12 +8,12 @@ class Checksum
     @original = original
   end
 
-  def original_word_count
-    original.split.size
-  end
-
   def processed_words
     @processed_words ||= process_original_words.join(' ')
+  end
+
+  def original_word_count
+    original.split.size
   end
 
   private
