@@ -4,5 +4,8 @@ RUN apk update && apk add git build-base nodejs yarn imagemagick postgresql-dev 
 
 RUN mkdir -p /app
 WORKDIR /app
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+RUN bundle install
 
 COPY . .

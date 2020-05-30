@@ -1,0 +1,15 @@
+default: &default
+  default_controller_host: <%= ENV['APP_HOST'] %>
+  default_mailer_host: <%= ENV['APP_HOST'] %>
+
+development:
+  <<: *default
+  asset_host: <%= ENV['APP_HOST'] %>
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  asset_host: <%= ENV['APP_HOST'] %>
+
