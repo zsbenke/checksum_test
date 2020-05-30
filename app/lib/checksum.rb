@@ -20,6 +20,10 @@ class Checksum
     processed_words.split.count
   end
 
+  def upcase_vowels_count
+    processed_words.split(//).select { |c| upcase_vowel?(c) }.count
+  end
+
   private
 
   def process_original_words

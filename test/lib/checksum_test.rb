@@ -39,4 +39,11 @@ class ChecksumTest < ActiveSupport::TestCase
     assert_equal 3, @checksum3.processed_word_count
     assert_equal 2, @checksum4.processed_word_count
   end
+
+  test 'should return the count of uppercase vowels' do
+    assert_equal 5, @checksum1.upcase_vowels_count
+    assert_equal 3, @checksum2.upcase_vowels_count
+    assert_equal 3, @checksum3.upcase_vowels_count
+    assert_equal 0, @checksum4.upcase_vowels_count
+  end
 end
