@@ -26,7 +26,7 @@ class ChecksumTest < ActiveSupport::TestCase
     assert_equal @fixture4, @checksum4.original
   end
 
-  test "should generate 10 character long words from original" do
+  test 'should generate 10 character long words from original' do
     assert_equal 'Foobarbazw IbblEfizzb UzzfIzzbUz Z', @checksum1.processed_words
     assert_equal 'Thequickbr OwnfOxjUmp Soverthela Zydog', @checksum2.processed_words
     assert_equal 'Thsewrdssh UldbEclEne D', @checksum3.processed_words

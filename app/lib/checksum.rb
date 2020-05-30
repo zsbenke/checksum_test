@@ -1,7 +1,7 @@
 class Checksum
   attr_reader :original
 
-  VOWELS = %w(a e i o u).freeze
+  VOWELS = %w[a e i o u].freeze
   CONSONANTS = (('a'..'z').to_a - VOWELS).freeze
 
   def initialize(original)
@@ -85,7 +85,7 @@ class Checksum
       # Upcase the current character – which should be a vowel – if the previous two are
       # consonants and the previous vowel is upcase.
       previous_vowel = find_previous_vowel(word, i)
-      if consonant?(word[i-1]) && consonant?(word[i-2]) && upcase_vowel?(previous_vowel)
+      if consonant?(word[i - 1]) && consonant?(word[i - 2]) && upcase_vowel?(previous_vowel)
         word[i] = char.upcase
       end
     end
@@ -93,8 +93,8 @@ class Checksum
     word.join
   end
 
-  def find_previous_vowel(word_array, i)
-    word_array.slice(0, i).select { |char| vowel?(char) }.last
+  def find_previous_vowel(word_array, char_index)
+    word_array.slice(0, char_index).select { |char| vowel?(char) }.last
   end
 
   def consonant?(char)

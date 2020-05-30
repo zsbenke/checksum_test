@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 AllCops:
   TargetRubyVersion: 2.6.5
   Exclude:
@@ -27,7 +29,7 @@ Style/FrozenStringLiteralComment:
 Style/NumericPredicate:
   Enabled: false
 
-Layout/IndentArray:
+Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 Layout/FirstParameterIndentation:
   EnforcedStyle: consistent
@@ -43,7 +45,7 @@ Style/FormatString:
 Style/GuardClause:
   MinBodyLength: 5
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   Exclude:
     - 'db/seeds.rb'
@@ -70,7 +72,7 @@ Metrics/BlockLength:
     - 'db/seeds.rb'
     - 'config/routes.rb'
 
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedLastArgumentHashStyle: ignore_implicit
 
 Style/ClassAndModuleChildren:
@@ -82,7 +84,7 @@ Style/FormatStringToken:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Style/RegexpLiteral:
