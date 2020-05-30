@@ -32,6 +32,16 @@ class Checksum
     original.length
   end
 
+  def to_s
+    [
+      original_word_count,
+      processed_words_count,
+      upcase_vowels_count,
+      consonants_count,
+      original_length
+    ].join('-')
+  end
+
   private
 
   def process_original_words

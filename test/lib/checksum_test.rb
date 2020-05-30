@@ -12,7 +12,12 @@ class ChecksumTest < ActiveSupport::TestCase
     @checksum4 = Checksum.new @fixture4
   end
 
-  test "should generate checksum"
+  test 'should generate string format of checksum' do
+    assert_equal '7-4-5-21-37', @checksum1.to_s
+    assert_equal '9-4-3-24-43', @checksum2.to_s
+    assert_equal '5-3-3-16-33', @checksum3.to_s
+    assert_equal '2-2-0-12-22', @checksum4.to_s
+  end
 
   test 'should return original string' do
     assert_equal @fixture1, @checksum1.original
