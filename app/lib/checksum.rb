@@ -16,12 +16,20 @@ class Checksum
     original.split.size
   end
 
-  def processed_word_count
+  def processed_words_count
     processed_words.split.count
   end
 
   def upcase_vowels_count
     processed_words.split(//).select { |c| upcase_vowel?(c) }.count
+  end
+
+  def consonants_count
+    processed_words.split(//).select { |c| consonant?(c) }.count
+  end
+
+  def original_length
+    original.length
   end
 
   private

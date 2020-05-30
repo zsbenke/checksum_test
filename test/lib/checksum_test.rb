@@ -12,6 +12,8 @@ class ChecksumTest < ActiveSupport::TestCase
     @checksum4 = Checksum.new @fixture4
   end
 
+  test "should generate checksum"
+
   test 'should return original string' do
     assert_equal @fixture1, @checksum1.original
     assert_equal @fixture2, @checksum2.original
@@ -34,10 +36,10 @@ class ChecksumTest < ActiveSupport::TestCase
   end
 
   test 'should return the count of processed words' do
-    assert_equal 4, @checksum1.processed_word_count
-    assert_equal 4, @checksum2.processed_word_count
-    assert_equal 3, @checksum3.processed_word_count
-    assert_equal 2, @checksum4.processed_word_count
+    assert_equal 4, @checksum1.processed_words_count
+    assert_equal 4, @checksum2.processed_words_count
+    assert_equal 3, @checksum3.processed_words_count
+    assert_equal 2, @checksum4.processed_words_count
   end
 
   test 'should return the count of uppercase vowels' do
@@ -45,5 +47,19 @@ class ChecksumTest < ActiveSupport::TestCase
     assert_equal 3, @checksum2.upcase_vowels_count
     assert_equal 3, @checksum3.upcase_vowels_count
     assert_equal 0, @checksum4.upcase_vowels_count
+  end
+
+  test 'should return the count of consonants' do
+    assert_equal 21, @checksum1.consonants_count
+    assert_equal 24, @checksum2.consonants_count
+    assert_equal 16, @checksum3.consonants_count
+    assert_equal 12, @checksum4.consonants_count
+  end
+
+  test 'should return the length of the original string' do
+    assert_equal 37, @checksum1.original_length
+    assert_equal 43, @checksum2.original_length
+    assert_equal 33, @checksum3.original_length
+    assert_equal 22, @checksum4.original_length
   end
 end
