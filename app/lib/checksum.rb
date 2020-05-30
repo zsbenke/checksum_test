@@ -16,6 +16,10 @@ class Checksum
     original.split.size
   end
 
+  def processed_word_count
+    processed_words.split.count
+  end
+
   private
 
   def process_original_words
