@@ -21,19 +21,17 @@ class ChecksumTest < ActiveSupport::TestCase
     assert_equal 9, checksum2.original_word_count
   end
 
-  test 'should clean up original words' do
-    checksum1 = Checksum.new @fixture3
-    assert_equal 'thse wrds shUld Be Clened', checksum1.cleaned
-
-    checksum2 = Checksum.new @fixture4
-    assert_equal 'rvztr tkrfrgp', checksum2.cleaned
-  end
-
   test "should generate 10 character long words from original" do
     checksum1 = Checksum.new @fixture1
     assert_equal 'Foobarbazw Ibblefizzb Uzzfizzbuz Z', checksum1.processed_words
 
     checksum2 = Checksum.new @fixture2
     assert_equal 'Thequickbr Ownfoxjump Soverthela Zydog', checksum2.processed_words
+
+    checksum3 = Checksum.new @fixture3
+    assert_equal 'Thsewrdssh Uldbeclene D', checksum3.processed_words
+
+    checksum4 = Checksum.new @fixture4
+    assert_equal 'Rvztrtkrfr Gp', checksum4.processed_words
   end
 end
