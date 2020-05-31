@@ -4,6 +4,8 @@ class Checksum
   VOWELS = %w[a e i o u].freeze
   CONSONANTS = (('a'..'z').to_a - VOWELS).freeze
 
+  delegate :length, to: :original, prefix: :original
+
   def initialize(original)
     @original = original
   end
@@ -26,10 +28,6 @@ class Checksum
 
   def consonants_count
     processed_words.split(//).select { |c| consonant?(c) }.count
-  end
-
-  def original_length
-    original.length
   end
 
   def to_s
