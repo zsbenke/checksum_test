@@ -82,8 +82,9 @@ class Checksum
 
       # Upcase the current character – which should be a vowel – if the previous two are
       # consonants and the previous vowel is upcase.
-      previous_vowel = find_previous_vowel(word, i)
-      if consonant?(word[i - 1]) && consonant?(word[i - 2]) && upcase_vowel?(previous_vowel)
+      previous_vowel = find_previous_vowel(word_array: word, char_index: i)
+      previous_chars = find_previous_chars(word_array: word, char_index: i, range: 2)
+      if consonants?(previous_chars) && upcase_vowel?(previous_vowel)
         word[i] = char.upcase
       end
     end
@@ -91,12 +92,20 @@ class Checksum
     word.join
   end
 
-  def find_previous_vowel(word_array, char_index)
+  def find_previous_vowel(word_array:, char_index:)
     word_array.slice(0, char_index).select { |char| vowel?(char) }.last
+  end
+
+  def find_previous_chars(word_array:, char_index:, range:)
+    word_array.slice(char_index - range, range)
   end
 
   def consonant?(char)
     CONSONANTS.include?(char.downcase)
+  end
+
+  def consonants?(chars)
+    chars.all? { |char| consonant?(char) }
   end
 
   def vowel?(char)
