@@ -14,7 +14,7 @@ class ChecksumTest < ActiveSupport::TestCase
 
   test 'should generate string format of checksum' do
     assert_equal '7-4-5-21-37', @checksum1.to_s
-    assert_equal '9-4-3-24-43', @checksum2.to_s
+    assert_equal '9-4-4-24-43', @checksum2.to_s
     assert_equal '5-3-3-16-33', @checksum3.to_s
     assert_equal '2-2-0-12-22', @checksum4.to_s
   end
@@ -27,29 +27,29 @@ class ChecksumTest < ActiveSupport::TestCase
   end
 
   test 'should generate 10 character long words from original' do
-    assert_equal 'Foobarbazw IbblEfizzb UzzfIzzbUz Z', @checksum1.processed_words
-    assert_equal 'Thequickbr OwnfOxjUmp Soverthela Zydog', @checksum2.processed_words
-    assert_equal 'Thsewrdssh UldbEclEne D', @checksum3.processed_words
-    assert_equal 'Rvztrtkrfr Gp', @checksum4.processed_words
+    assert_equal 'Foobarbazw IbblEfizzb UzzfIzzbUz Z', @checksum1.words
+    assert_equal 'Thequickbr OwnfOxjUmp SOverthela Zydog', @checksum2.words
+    assert_equal 'Thsewrdssh UldbEclEne D', @checksum3.words
+    assert_equal 'Rvztrtkrfr Gp', @checksum4.words
   end
 
   test 'should return the count of original words' do
-    assert_equal 7, @checksum1.original_word_count
-    assert_equal 9, @checksum2.original_word_count
-    assert_equal 5, @checksum3.original_word_count
-    assert_equal 2, @checksum4.original_word_count
+    assert_equal 7, @checksum1.original_words_count
+    assert_equal 9, @checksum2.original_words_count
+    assert_equal 5, @checksum3.original_words_count
+    assert_equal 2, @checksum4.original_words_count
   end
 
   test 'should return the count of processed words' do
-    assert_equal 4, @checksum1.processed_words_count
-    assert_equal 4, @checksum2.processed_words_count
-    assert_equal 3, @checksum3.processed_words_count
-    assert_equal 2, @checksum4.processed_words_count
+    assert_equal 4, @checksum1.words_count
+    assert_equal 4, @checksum2.words_count
+    assert_equal 3, @checksum3.words_count
+    assert_equal 2, @checksum4.words_count
   end
 
   test 'should return the count of uppercase vowels' do
     assert_equal 5, @checksum1.uppercase_vowels_count
-    assert_equal 3, @checksum2.uppercase_vowels_count
+    assert_equal 4, @checksum2.uppercase_vowels_count
     assert_equal 3, @checksum3.uppercase_vowels_count
     assert_equal 0, @checksum4.uppercase_vowels_count
   end

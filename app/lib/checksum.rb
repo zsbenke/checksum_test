@@ -12,30 +12,30 @@ class Checksum
     @original = original
   end
 
-  def processed_words
-    @processed_words ||= process_original_words.join(' ')
+  def words
+    @words ||= process_original_words.join(' ')
   end
 
-  def original_word_count
+  def original_words_count
     original.split.size
   end
 
-  def processed_words_count
-    processed_words.split.count
+  def words_count
+    words.split.count
   end
 
   def uppercase_vowels_count
-    processed_words.split(//).select { |c| uppercase_vowel?(c) }.count
+    words.split(//).select { |c| uppercase_vowel?(c) }.count
   end
 
   def consonants_count
-    processed_words.split(//).select { |c| consonant?(c) }.count
+    words.split(//).select { |c| consonant?(c) }.count
   end
 
   def to_s
     [
-      original_word_count,
-      processed_words_count,
+      original_words_count,
+      words_count,
       uppercase_vowels_count,
       consonants_count,
       original_length
@@ -45,7 +45,7 @@ class Checksum
   private
 
   def process_original_words
-    @processed_words = original
+    @words = original
 
     # Run original words through processing rules
     remove_non_english_characters
@@ -55,43 +55,33 @@ class Checksum
   end
 
   def remove_non_english_characters
-    @processed_words = @processed_words.scan(/[a-zA-Z ]+/).join
+    @words = @words.scan(/[a-zA-Z ]+/).join
   end
 
   def group_new_words
-    @processed_words = @processed_words.gsub(/\s+/, '').scan(/.{1,10}/)
+    @words = @words.gsub(/\s+/, '').scan(/.{1,10}/)
   end
 
   def titleize_words
-    @processed_words = @processed_words.map(&:downcase).map(&:titleize)
+    @words = @words.map(&:downcase).map(&:titleize)
   end
 
   def upcase_vowels
-    @processed_words.each_with_index do |word, i|
-      @processed_words[i] = upcase_vowels_in_word(word)
-    end
-  end
-
-  def upcase_vowels_in_word(word)
-    # No need to process the word when the first character isn't an uppercase
-    # vowel already.
-    return word unless uppercase_vowel?(word.chr)
-
-    word = word.split(//)
-    word.each_with_index do |char, i|
+    @words = @words.join.split(//)
+    @words.each_with_index do |char, i|
       # No need to process if the current character is a consonant or the first one.
       next if consonant?(char) || i == 0
 
       # Upcase the current character – which should be a vowel – if the previous two are
       # consonants and the previous vowel is uppercase.
-      previous_vowel = find_previous_vowel(word_array: word, char_index: i)
-      previous_chars = find_previous_chars(word_array: word, char_index: i, range: 2)
+      previous_vowel = find_previous_vowel(word_array: @words, char_index: i)
+      previous_chars = find_previous_chars(word_array: @words, char_index: i, range: 2)
       if consonants?(previous_chars) && uppercase_vowel?(previous_vowel)
-        word[i] = char.upcase
+        @words[i] = char.upcase
       end
     end
 
-    word.join
+    @words = @words.join.scan(/.{1,10}/)
   end
 
   def find_previous_vowel(word_array:, char_index:)
