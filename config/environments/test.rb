@@ -46,4 +46,15 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  config.hosts << IPAddr.new(IPSocket.getaddress(Socket.gethostname))
+  config.action_mailer.default_url_options = {
+    host: "http://#{IPSocket.getaddress(Socket.gethostname)}"
+  }
+  config.action_controller.default_url_options = {
+    host: "http://#{IPSocket.getaddress(Socket.gethostname)}"
+  }
+  Rails.application.routes.default_url_options = {
+    host: "http://#{IPSocket.getaddress(Socket.gethostname)}"
+  }
 end

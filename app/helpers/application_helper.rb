@@ -36,6 +36,18 @@ module ApplicationHelper
     render partial: 'shared/info_panel', locals: { message: message, options: options }
   end
 
+  def data_label(options = {}, &block)
+    css_class = options[:class].present? ? "data_label #{options[:class]}" : 'data_label'
+    data_label = tag.div capture(&block), class: 'data_label_text'
+    if options[:icon].present?
+      data_label_icon = svg_icon('icons.svg', options[:icon], class: options[:icon_class])
+      data_label_icon = tag.div data_label_icon, class: 'data_label_icon'
+      data_label = data_label_icon + data_label
+    end
+    options.merge! class: css_class
+    tag.div data_label, options
+  end
+
   def form_actions(inline: false, plain: false, centered: false, &block)
     css_class = %w(form_actions)
     css_class << 'inline' if inline

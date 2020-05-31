@@ -11,3 +11,4 @@ en:
     label:
       checksum:
         original: "Text:"
+        checksum: "Checksum:"

@@ -784,4 +784,19 @@ $color-bg-button: $color-primary;
   h2 {
     margin-top: 0;
   }
+
+  .checksum_output {
+    position: relative;
+    top: -0.05rem;
+    padding: 0.25*$grid-gutter 0.5*$grid-gutter;
+    font-family: monospace;
+    font-size: $font-size-big;
+    color: #fff;
+    background-color: #999;
+    border-radius: $radius-small;
+
+    &.calculated {
+      background-color: $color-green;
+    }
+  }
 }
