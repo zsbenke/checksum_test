@@ -22,8 +22,8 @@ class Checksum
     processed_words.split.count
   end
 
-  def upcase_vowels_count
-    processed_words.split(//).select { |c| upcase_vowel?(c) }.count
+  def uppercase_vowels_count
+    processed_words.split(//).select { |c| uppercase_vowel?(c) }.count
   end
 
   def consonants_count
@@ -34,7 +34,7 @@ class Checksum
     [
       original_word_count,
       processed_words_count,
-      upcase_vowels_count,
+      uppercase_vowels_count,
       consonants_count,
       original_length
     ].join('-')
@@ -73,7 +73,7 @@ class Checksum
   def upcase_vowels_in_word(word)
     # No need to process the word when the first character isn't an uppercase
     # vowel already.
-    return word unless upcase_vowel?(word.chr)
+    return word unless uppercase_vowel?(word.chr)
 
     word = word.split(//)
     word.each_with_index do |char, i|
@@ -81,10 +81,10 @@ class Checksum
       next if consonant?(char) || i == 0
 
       # Upcase the current character – which should be a vowel – if the previous two are
-      # consonants and the previous vowel is upcase.
+      # consonants and the previous vowel is uppercase.
       previous_vowel = find_previous_vowel(word_array: word, char_index: i)
       previous_chars = find_previous_chars(word_array: word, char_index: i, range: 2)
-      if consonants?(previous_chars) && upcase_vowel?(previous_vowel)
+      if consonants?(previous_chars) && uppercase_vowel?(previous_vowel)
         word[i] = char.upcase
       end
     end
@@ -112,7 +112,7 @@ class Checksum
     VOWELS.include?(char.downcase)
   end
 
-  def upcase_vowel?(char)
+  def uppercase_vowel?(char)
     VOWELS.map(&:upcase).include?(char)
   end
 end
