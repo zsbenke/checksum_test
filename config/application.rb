@@ -11,9 +11,9 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    I18n.available_locales = [:hu]
+    I18n.available_locales = [:en]
     config.beginning_of_week = :monday
-    config.i18n.default_locale = :hu
+    config.i18n.default_locale = :en
     config.time_zone = 'Budapest'
     config.host = config_for(:host)
   end
