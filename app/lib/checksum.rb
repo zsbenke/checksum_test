@@ -48,13 +48,13 @@ class Checksum
     @words = original
 
     # Run original words through processing rules
-    remove_non_english_characters
+    remove_non_english_chars
     group_new_words
     titleize_words
     upcase_vowels
   end
 
-  def remove_non_english_characters
+  def remove_non_english_chars
     @words = @words.scan(/[a-zA-Z ]+/).join
   end
 
@@ -74,8 +74,8 @@ class Checksum
 
       # Upcase the current character – which should be a vowel – if the previous two are
       # consonants and the previous vowel is uppercase.
-      previous_vowel = find_previous_vowel(word_array: @words, char_index: i)
-      previous_chars = find_previous_chars(word_array: @words, char_index: i, range: 2)
+      previous_vowel = find_previous_vowel(chars: @words, char_index: i)
+      previous_chars = find_previous_chars(chars: @words, char_index: i, range: 2)
       if consonants?(previous_chars) && uppercase_vowel?(previous_vowel)
         @words[i] = char.upcase
       end
@@ -84,12 +84,12 @@ class Checksum
     @words = @words.join.scan(/.{1,10}/)
   end
 
-  def find_previous_vowel(word_array:, char_index:)
-    word_array.slice(0, char_index).select { |char| vowel?(char) }.last
+  def find_previous_vowel(chars:, char_index:)
+    chars.slice(0, char_index).select { |char| vowel?(char) }.last
   end
 
-  def find_previous_chars(word_array:, char_index:, range:)
-    word_array.slice(char_index - range, range)
+  def find_previous_chars(chars:, char_index:, range:)
+    chars.slice(char_index - range, range)
   end
 
   def consonant?(char)
