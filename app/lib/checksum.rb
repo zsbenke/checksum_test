@@ -1,4 +1,6 @@
 class Checksum
+  include ActiveModel::Model
+
   attr_reader :original
 
   VOWELS = %w[a e i o u].freeze
@@ -6,7 +8,7 @@ class Checksum
 
   delegate :length, to: :original, prefix: :original
 
-  def initialize(original)
+  def initialize(original = '')
     @original = original
   end
 
