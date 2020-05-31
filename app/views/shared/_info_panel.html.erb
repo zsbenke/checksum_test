@@ -1,0 +1,15 @@
+<%= tag.div options do %>
+  <% if options[:class].include? 'text_only' %>
+    <div class="info_icon">
+      <%= svg_icon('icons.svg', (options[:icon] || 'info_circle')) %>
+    </div>
+  <% end %>
+
+  <div class="info_panel_body">
+    <% if options[:container_only] == true %>
+      <%= message %>
+    <% else %>
+      <p class="info_panel_message"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>

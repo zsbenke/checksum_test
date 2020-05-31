@@ -13,9 +13,9 @@
     <meta name="turbolinks-cache-control" content="no-cache">
   </head>
 
-  <body>
+  <%= tag.body class: default_body_classes do %>
     <main class="content">
       <%= yield %>
     </main>
-  </body>
+  <% end %>
 </html>

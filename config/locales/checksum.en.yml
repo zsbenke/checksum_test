@@ -1,0 +1,13 @@
+en:
+  checksum:
+    titles:
+      new: "Generate Checksum"
+    actions:
+      create: "Create Checksum"
+    messages:
+      rules: "To generate a new checksum, type your text here, then click on the Create Checksum button below."
+
+  helpers:
+    label:
+      checksum:
+        original: "Text:"

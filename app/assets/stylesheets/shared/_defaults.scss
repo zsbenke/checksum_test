@@ -1,4 +1,5 @@
 html {
+  padding: 2*$base-scale 0;
   font-family: $font-family-base;
   font-size: $font-size-base;
   color: $font-color-primary;
@@ -770,15 +771,17 @@ $color-bg-button: $color-primary;
 }
 
 .panel {
+  padding: $grid-gutter;
   background-color: #fff;
-  box-shadow: 0 1px 12px rgba(#000, 0.05);
+  border: 1px solid $color-border;
   border-radius: $radius-small;
-
-  &.inner_panel {
-    padding: $grid-gutter;
-    background-color: #FBFCFD;
-    border: 1px solid $color-border;
-    box-shadow: none;
-  }
+  box-shadow: 0 1px 12px rgba(#000, 0.05);
 }
 
+.unit.checksum_form {
+  width: $unit-eight;
+
+  h2 {
+    margin-top: 0;
+  }
+}

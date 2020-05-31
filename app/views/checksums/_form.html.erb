@@ -1,0 +1,18 @@
+<%= form_for checksum, url: checksum_path,
+  remote: true, data: { type: :json } do |f| %>
+  <div class="form_field compact inline">
+    <div class="field_label right">
+      <%= f.label :original %>
+    </div>
+    <div class="field_input">
+      <%= svg_icon('icons.svg', 'doc_text', class: 'field_icon') %>
+      <%= f.text_field :original %>
+    </div>
+  </div>
+
+  <%= info_panel_tag t('checksum.messages.rules').html_safe, class: 'inline text_only' %>
+
+  <%= form_actions inline: true do %>
+    <%= f.submit t('checksum.actions.create'), class: 'button' %>
+  <% end %>
+<% end %>
