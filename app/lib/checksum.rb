@@ -1,23 +1,23 @@
 class Checksum
   include ActiveModel::Model
 
-  attr_reader :original
+  attr_reader :input
 
   VOWELS = %w[a e i o u].freeze
   CONSONANTS = (('a'..'z').to_a - VOWELS).freeze
 
-  delegate :length, to: :original, prefix: :original
+  delegate :length, to: :input, prefix: :input
 
-  def initialize(original = '')
-    @original = original
+  def initialize(input = '')
+    @input = input
   end
 
   def words
-    @words ||= process_original_words.join(' ')
+    @words ||= process_input_words.join(' ')
   end
 
-  def original_words_count
-    original.split.size
+  def input_words_count
+    input.split.size
   end
 
   def words_count
@@ -32,22 +32,22 @@ class Checksum
     words.split(//).select { |c| consonant?(c) }.count
   end
 
-  def to_s
+  def output
     [
-      original_words_count,
+      input_words_count,
       words_count,
       uppercase_vowels_count,
       consonants_count,
-      original_length
+      input_length
     ].join('-')
   end
 
   private
 
-  def process_original_words
-    @words = original
+  def process_input_words
+    @words = input
 
-    # Run original words through processing rules
+    # Run input words through processing rules
     remove_non_english_chars
     group_new_words
     titleize_words

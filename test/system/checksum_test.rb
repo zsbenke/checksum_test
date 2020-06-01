@@ -13,18 +13,18 @@ class ChecksumTest < ApplicationSystemTestCase
     assert_text I18n.t('checksum.titles.new')
     assert_no_selector '.checksum_output.calculated'
 
-    fill_in I18n.t('helpers.label.checksum.original'), with: @fixture1
+    fill_in I18n.t('helpers.label.checksum.input'), with: @fixture1
     click_button I18n.t('checksum.actions.create')
     assert_selector '.checksum_output.calculated'
     within '.checksum_output' do
-      assert_text @checksum1.to_s
+      assert_text @checksum1.output
     end
 
-    fill_in I18n.t('helpers.label.checksum.original'), with: @fixture2
+    fill_in I18n.t('helpers.label.checksum.input'), with: @fixture2
     click_button I18n.t('checksum.actions.create')
     assert_selector '.checksum_output.calculated'
     within '.checksum_output' do
-      assert_text @checksum2.to_s
+      assert_text @checksum2.output
     end
   end
 
@@ -33,21 +33,21 @@ class ChecksumTest < ApplicationSystemTestCase
     assert_text I18n.t('checksum.titles.new')
     assert_no_selector '.checksum_output.calculated'
     within '.checksum_output' do
-      assert_text Checksum.new.to_s
+      assert_text Checksum.new.output
     end
 
-    fill_in I18n.t('helpers.label.checksum.original'), with: @fixture1
+    fill_in I18n.t('helpers.label.checksum.input'), with: @fixture1
     click_button I18n.t('checksum.actions.create')
     within '.checksum_output' do
-      assert_text @checksum1.to_s
+      assert_text @checksum1.output
     end
     assert_selector '.checksum_output.calculated'
 
-    fill_in I18n.t('helpers.label.checksum.original'), with: ''
+    fill_in I18n.t('helpers.label.checksum.input'), with: ''
     click_button I18n.t('checksum.actions.create')
     assert_no_selector '.checksum_output.calculated'
     within '.checksum_output' do
-      assert_text Checksum.new.to_s
+      assert_text Checksum.new.output
     end
   end
 end

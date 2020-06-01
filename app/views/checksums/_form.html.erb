@@ -3,15 +3,15 @@
     type: :json,
     controller: 'checksum-form',
     action: 'ajax:success->checksum-form#showOutput',
-    checksum_form_empty_output: checksum.to_s
+    checksum_form_empty_output: checksum.output
   } do |f| %>
   <div class="form_field compact inline">
     <div class="field_label right">
-      <%= f.label :original %>
+      <%= f.label :input %>
     </div>
     <div class="field_input">
       <%= svg_icon('icons.svg', 'doc_text', class: 'field_icon') %>
-      <%= f.text_field :original %>
+      <%= f.text_field :input %>
     </div>
   </div>
 
@@ -19,12 +19,12 @@
 
   <div class="form_field compact inline">
     <div class="field_label right">
-      <%= label_tag nil, t('helpers.label.checksum.checksum') %>
+      <%= label_tag nil, t('helpers.label.checksum.output') %>
     </div>
     <div class="field_input">
       <%= data_label do %>
         <span class="checksum_output" data-target="checksum-form.output">
-          <%= checksum %>
+          <%= checksum.output %>
         </span>
       <% end %>
     </div>

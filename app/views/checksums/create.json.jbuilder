@@ -1,1 +1,1 @@
-json.checksum @checksum.to_s
+json.output @checksum.output

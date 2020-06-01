@@ -6,11 +6,11 @@ export default class extends Controller {
   showOutput(event) {
     let [data, status, xhr] = event.detail
 
-    if (data.checksum) {
-      this.outputTarget.textContent = data.checksum
+    if (data.output) {
+      this.outputTarget.textContent = data.output
       this.outputTarget.classList.add('calculated')
 
-      if (data.checksum == this.emptyOutput) {
+      if (data.output == this.emptyOutput) {
         this.outputTarget.classList.remove('calculated')
       }
     }

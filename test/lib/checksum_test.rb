@@ -12,32 +12,32 @@ class ChecksumTest < ActiveSupport::TestCase
     @checksum4 = Checksum.new @fixture4
   end
 
-  test 'should generate string format of checksum' do
-    assert_equal '7-4-5-21-37', @checksum1.to_s
-    assert_equal '9-4-4-24-43', @checksum2.to_s
-    assert_equal '5-3-3-16-33', @checksum3.to_s
-    assert_equal '2-2-0-12-22', @checksum4.to_s
+  test 'should generate output of checksum' do
+    assert_equal '7-4-5-21-37', @checksum1.output
+    assert_equal '9-4-4-24-43', @checksum2.output
+    assert_equal '5-3-3-16-33', @checksum3.output
+    assert_equal '2-2-0-12-22', @checksum4.output
   end
 
-  test 'should return original string' do
-    assert_equal @fixture1, @checksum1.original
-    assert_equal @fixture2, @checksum2.original
-    assert_equal @fixture3, @checksum3.original
-    assert_equal @fixture4, @checksum4.original
+  test 'should return input string' do
+    assert_equal @fixture1, @checksum1.input
+    assert_equal @fixture2, @checksum2.input
+    assert_equal @fixture3, @checksum3.input
+    assert_equal @fixture4, @checksum4.input
   end
 
-  test 'should generate 10 character long words from original' do
+  test 'should generate 10 character long words from input' do
     assert_equal 'Foobarbazw IbblEfizzb UzzfIzzbUz Z', @checksum1.words
     assert_equal 'Thequickbr OwnfOxjUmp SOverthela Zydog', @checksum2.words
     assert_equal 'Thsewrdssh UldbEclEne D', @checksum3.words
     assert_equal 'Rvztrtkrfr Gp', @checksum4.words
   end
 
-  test 'should return the count of original words' do
-    assert_equal 7, @checksum1.original_words_count
-    assert_equal 9, @checksum2.original_words_count
-    assert_equal 5, @checksum3.original_words_count
-    assert_equal 2, @checksum4.original_words_count
+  test 'should return the count of input words' do
+    assert_equal 7, @checksum1.input_words_count
+    assert_equal 9, @checksum2.input_words_count
+    assert_equal 5, @checksum3.input_words_count
+    assert_equal 2, @checksum4.input_words_count
   end
 
   test 'should return the count of processed words' do
@@ -61,10 +61,10 @@ class ChecksumTest < ActiveSupport::TestCase
     assert_equal 12, @checksum4.consonants_count
   end
 
-  test 'should return the length of the original string' do
-    assert_equal 37, @checksum1.original_length
-    assert_equal 43, @checksum2.original_length
-    assert_equal 33, @checksum3.original_length
-    assert_equal 22, @checksum4.original_length
+  test 'should return the length of the input string' do
+    assert_equal 37, @checksum1.input_length
+    assert_equal 43, @checksum2.input_length
+    assert_equal 33, @checksum3.input_length
+    assert_equal 22, @checksum4.input_length
   end
 end

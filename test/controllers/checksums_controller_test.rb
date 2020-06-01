@@ -3,7 +3,7 @@ require 'test_helper'
 class ChecksumsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @fixture = 'foo bar baz wibble fizzbuzz fizz buzz'
-    @checksum_params = { original: @fixture }
+    @checksum_params = { input: @fixture }
     @checksum = Checksum.new @fixture
   end
 
@@ -17,6 +17,6 @@ class ChecksumsControllerTest < ActionDispatch::IntegrationTest
     post checksum_url(format: :json), params: { checksum: @checksum_params }
     assert_response :success
     assert_equal 'application/json', @response.media_type
-    assert_match @checksum.to_s, @response.body
+    assert_match @checksum.output, @response.body
   end
 end

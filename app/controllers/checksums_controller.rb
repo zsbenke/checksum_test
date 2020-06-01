@@ -4,7 +4,7 @@ class ChecksumsController < ApplicationController
   end
 
   def create
-    @checksum = Checksum.new checksum_params.fetch(:original, '')
+    @checksum = Checksum.new checksum_params.fetch(:input, '')
 
     respond_to do |format|
       format.json
@@ -14,6 +14,6 @@ class ChecksumsController < ApplicationController
   private
 
   def checksum_params
-    params.require(:checksum).permit(:original)
+    params.require(:checksum).permit(:input)
   end
 end

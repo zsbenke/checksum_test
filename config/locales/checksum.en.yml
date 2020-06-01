@@ -10,5 +10,5 @@ en:
   helpers:
     label:
       checksum:
-        original: "Text:"
-        checksum: "Checksum:"
+        input: "Input:"
+        output: "Output:"
